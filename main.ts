@@ -31,6 +31,9 @@ function main(): void {
   if (lines.length !== 2 || lines.some((line) => line.trim().length === 0)) {
     throw new Error("entry must be exactly two non-blank lines");
   }
+  if (ENTRY.length === 0 || ENTRY.endsWith("\n")) {
+    throw new Error("entry must be non-empty with no trailing newline");
+  }
 
   if (!existsSync("/output")) {
     mkdirSync("/output", { recursive: true });
